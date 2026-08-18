@@ -1,11 +1,10 @@
 title: Two Sum
+slug: two-sum
 difficulty: 800
 function_name: two_sum
 time_limit_seconds: 2
 memory_limit_mb: 256
 
-languages:
-  - python
 
 arguments:
   - name: nums
