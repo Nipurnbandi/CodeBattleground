@@ -1,0 +1,16 @@
+title: Two Sum
+difficulty: 800
+function_name: two_sum
+time_limit_seconds: 2
+memory_limit_mb: 256
+
+languages:
+  - python
+
+arguments:
+  - name: nums
+    type: list[int]
+  - name: target
+    type: int
+
+return_type: list[int]

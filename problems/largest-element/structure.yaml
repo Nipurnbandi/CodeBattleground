@@ -1,0 +1,12 @@
+title: Largest Element
+slug: largest-element
+difficulty: 700
+function_name: largest_element
+time_limit_seconds: 1
+memory_limit_mb: 128
+
+arguments:
+  - name: nums
+    type: list[int]
+
+return_type: int
