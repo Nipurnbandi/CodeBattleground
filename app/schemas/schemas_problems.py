@@ -24,4 +24,3 @@ class ProblemDetailResponse(ProblemResponse):
     time_limit_seconds: int
     memory_limit_mb: int
     default_codes: list[DefaultCodeResponse]
-    

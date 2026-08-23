@@ -1,39 +1,23 @@
-import enum
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, Enum, DateTime
-from sqlalchemy.sql import func
-from app.core.database import Base
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
+
+from app.models.submissions import SubmissionStatus
 
 
-class SubmissionStatus(str, enum.Enum):
-    PENDING = "PENDING"
-    RUNNING = "RUNNING"
-    AC = "AC"
-    WA = "WA"
-    TLE = "TLE"
-    MLE = "MLE"
-    RE = "RE"
-    CE = "CE"
+class SubmissionRequest(BaseModel):
+    language: str = Field(min_length=1, max_length=16)
+    source_code: str = Field(min_length=1)
 
 
-class Submission(Base):
-    __tablename__ = "submissions"
+class SubmissionResponse(BaseModel):
+    id: int
+    user_id: int
+    problem_id: int
+    language: str
+    status: SubmissionStatus
+    tests_total: int
+    tests_done: int
+    created_at: datetime
 
-    id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("users.id"), index=True)
-    problem_id = Column(Integer, ForeignKey("problems.id"), index=True)
-    language = Column(String(16))
-    source_code = Column(Text)
-
-    status = Column(
-        Enum(SubmissionStatus),
-        default=SubmissionStatus.PENDING,
-        index=True
-    )
-
-    tests_total = Column(Integer, default=0)
-    tests_done = Column(Integer, default=0)
-
-    created_at = Column(
-        DateTime(timezone=True),
-        server_default=func.now()
-    )
+    model_config = ConfigDict(from_attributes=True)

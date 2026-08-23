@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from .api import problems
+from .api import auth
+from .api import submissions
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -26,3 +28,5 @@ app.add_middleware(
 
 
 app.include_router(problems.router)
+app.include_router(auth.router)
+app.include_router(submissions.router)
