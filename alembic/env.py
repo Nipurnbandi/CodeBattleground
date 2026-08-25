@@ -2,7 +2,9 @@ from logging.config import fileConfig
 from app.core.database import Base
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
-from app.models.problems import Base,Problem,DefaultCodes
+from app.models.problems import Problem, DefaultCodes
+from app.models.submissions import Submission
+from app.models.users import Users
 
 
 

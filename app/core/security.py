@@ -11,12 +11,11 @@ ALGORITHM = "HS256"
 
 
 def is_password_strong(password: str) -> bool:
-	return (
-		len(password) >= 8
-		and bool(re.search(r"[A-Z]", password))
-		and bool(re.search(r"[a-z]", password))
-		and bool(re.search(r"\d", password))
-	)
+    has_upper = any(char.isupper() for char in password)
+    has_lower = any(char.islower() for char in password)
+    has_digit = any(char.isdigit() for char in password)
+
+    return len(password) >= 8 and has_upper and has_lower and has_digit
 
 
 def hash(password: str) -> str:

@@ -23,8 +23,8 @@ router = APIRouter(
 async def register(request_model: UsersRequest, db: Session = Depends(get_db)):
     email = request_model.email.strip().lower()
 
-    existing_user = db.query(Users).filter(
-        (Users.email == email) | (Users.username == request_model.username)
+    existing_user=db.query(Users).filter(
+        (Users.email == email)|(Users.username == request_model.username)
     ).first()
 
     if existing_user:
